@@ -9,6 +9,7 @@
    #:make-timegraph
    #:print-tg
    #:*tg*
+   #:bfs
 
    ;; Relation symbols to export
    #:equals

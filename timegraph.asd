@@ -9,7 +9,8 @@
   :components
   ((:file "pkg")
    (:file "timegraph")
-   (:file "timepoint")))
+   (:file "timepoint")
+   (:file "timegraph-bfs")))
 
 (defsystem :timegraph/tests
     :name "Timegraph tests"
