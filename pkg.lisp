@@ -7,6 +7,7 @@
    #:assert-prop
    #:eval-prop
    #:make-timegraph
+   #:encode-timestamp
    #:print-tg
    #:*tg*
    #:bfs
@@ -22,7 +23,9 @@
 
    ;; Quant bounds
    #:update-upper-bound
-   #:update-lower-bound))
+   #:update-lower-bound
+   #:update-upper-bound-inst
+   #:update-lower-bound-inst))
 
 (defpackage #:timegraph.implementation
   (:use :common-lisp :timegraph))

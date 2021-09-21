@@ -186,6 +186,36 @@
 ; Quantitative Bounding Functions
 ; -------------------------------------------------------------------------
 
+; Same as update-lower-bound, but treats the beginning timepoint of e1 as
+; instantaneous, so that both the lower and upper bounds of the timepoint
+; are set
+(defun update-lower-bound-inst (e1 ts &optional (tg *tg*))
+  (let* ((tp (get-beg tg e1))
+         (upper-ts (tp-upper tp)))
+    ;; First check if the timebound is inconsistent. Since optimal bounds are
+    ;; always propagated, this amounts to just checking the upper bound on
+    ;; this point.
+    (when (and upper-ts (local-time:timestamp< upper-ts ts))
+      (format t "Error: inconsistent lower bound ~A on episode ~A" ts e1)
+      (return-from update-lower-bound-inst))
+    ;; Now, we are free to add the bound and propagate.
+    (update-lower tp ts) (update-upper tp ts)))
+
+; Same as update-upper-bound, but treats the ending timepoint of e1 as
+; instantaneous, so that both the lower and upper bounds of the timepoint
+; are set
+(defun update-upper-bound-inst (e1 ts &optional (tg *tg*))
+  (let* ((tp (get-end tg e1))
+         (lower-ts (tp-lower tp)))
+    ;; First check if the timebound is inconsistent. Since optimal bounds are
+    ;; always propagated, this amounts to just checking the upper bound on
+    ;; this point.
+    (when (and lower-ts (local-time:timestamp> lower-ts ts))
+      (format t "Error: inconsistent upper bound ~A on episode ~A" ts e1)
+      (return-from update-upper-bound-inst))
+    ;; Now, we are free to add the bound and propagate.
+    (update-lower tp ts) (update-upper tp ts)))
+
 (defun update-lower-bound (e1 ts &optional (tg *tg*))
   (let* ((tp (get-beg tg e1))
          (upper-ts (tp-upper tp)))

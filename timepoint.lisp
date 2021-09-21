@@ -72,6 +72,10 @@
 ;;; Utility Functions
 ;;; -----------------------------------------------------------------------
 
+;;; Wrapper for local-time package
+(defun encode-timestamp (nsec sec minute hour day month year &key timezone offset into)
+  (local-time:encode-timestamp nsec sec minute hour day month year :timezone timezone :offset offset :into into))
+
 ;;; Get list of direct successors of a timepoint t1
 (defun get-successors (t1)
   (when t1
