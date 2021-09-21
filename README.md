@@ -1,5 +1,7 @@
 # Timegraph
 
+(NOTE: forked from original repo at https://github.com/bkuehnert/timegraph so that minor modifications could be made)
+
 `:timegraph` is a Common Lisp utility for computing temporal relations between episodes via the [timegraph](#1) model.
 
 A timegraph is a directed, acyclic graph whose vertices represent single points in time, and whose edges represent a ≤ relationship. Each episode corresponds to two points in the timegraph: One representing the beginning of the episode, and one representing the end of the episode (and the first coming before the second).
